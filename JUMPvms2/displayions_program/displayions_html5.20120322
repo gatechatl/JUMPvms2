@@ -1,0 +1,30 @@
+#!/usr/bin/perl
+
+$wrapped = '/cgi-bin/displayions_html5.wrapped';
+$querystring = $ENV{QUERY_STRING};
+$querystring =~ s!Dta=((.*/)([^/]+.dta))&!Dta=/tmp/$3&!;
+
+$dtapath = $1;
+$dtadir = $2;
+$dtaname = $3;
+
+if (-e $dtapath) { print "Location: ${wrapped}?$ENV{QUERY_STRING}\n\n"; exit; }
+#if (-e $dtapath) { print "Content-type: text/html\n\nError: $ENV{QUERY_STRING}; exit }
+
+if (! -e "/tmp/$dtaname")
+{
+    if (-e ${dtadir}."dta.tgz") 
+    { 
+        qx( /bin/tar zxOf ${dtadir}dta.tgz $dtaname > /tmp/$dtaname );
+    } else {
+        #print "Content-type: text/html\n\nError: ${dtadir}dta.tgz not found\n"; die
+	print "Content-type: text/html\n\nError: $querystring and ${dtadir}dta.tgz not found\n"; die
+    }
+    if (! -e "/tmp/$dtaname") { print "Content-type: text/html\n\nError: /tmp/$dtaname not found\n"; die }
+}
+($outname) = $dtaname =~ /(.*)\.dta/;
+$outname .= '.out';
+qx( cd /tmp && /bin/ln -sf ${dtadir}${outname} $outname );
+print $ENV{QUERY_STRING},"\n\n";
+print "Location: ${wrapped}?$querystring\n\n";
+

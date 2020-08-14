@@ -1,0 +1,28 @@
+Execution Start: Fri Aug 14 14:09:08 2020
+Reading peptide: (K.AATEEENSHGQANGLLNAPSLGS#PIR.V)
+/home/hwang1/201509RMS_b3_phos/P175/P175.1/P175.1635.1.3.spout
+sp|Q6IQ55-3|TTBK2_HUMAN
+P175.1635.1.3.dta
+P175.1
+P175
+/home/tshaw/Software/JUMPvms2_Example/ExampleInput/PhosphoJUMPSearch/HWang1/P175/P175.1/P175.mzXML
+/home/tshaw/Software/JUMPvms2_Example/ExampleInput/PhosphoJUMPSearch/HWang1/P175/P175.1/P175.1.dtas
+
+### Convert /home/tshaw/Software/JUMPvms2_Example/ExampleInput/PhosphoJUMPSearch/HWang1/P175/P175.1/P175.mzXML to JUMPvms2_Output_20200814/Intermediate/DTA/P175.1635.1.3.dta ###
+perl /home/tshaw/Software/JUMPvms2/mzXML2dta.pm /home/tshaw/Software/JUMPvms2_Example/ExampleInput/PhosphoJUMPSearch/HWang1/P175/P175.1/P175.mzXML 1635 3 > JUMPvms2_Output_20200814/Intermediate/DTA/P175.1635.1.3.dta
+/home/hwang1/201509RMS_b3_phos/P175/P175.1/P175.2211.1.3.spout
+sp|Q6IQ55-3|TTBK2_HUMAN
+P175.2211.1.3.dta
+P175.1
+P175
+/home/tshaw/Software/JUMPvms2_Example/ExampleInput/PhosphoJUMPSearch/HWang1/P175/P175.1/P175.mzXML
+/home/tshaw/Software/JUMPvms2_Example/ExampleInput/PhosphoJUMPSearch/HWang1/P175/P175.1/P175.1.dtas
+
+### Convert /home/tshaw/Software/JUMPvms2_Example/ExampleInput/PhosphoJUMPSearch/HWang1/P175/P175.1/P175.mzXML to JUMPvms2_Output_20200814/Intermediate/DTA/P175.2211.1.3.dta ###
+perl /home/tshaw/Software/JUMPvms2/mzXML2dta.pm /home/tshaw/Software/JUMPvms2_Example/ExampleInput/PhosphoJUMPSearch/HWang1/P175/P175.1/P175.mzXML 2211 3 > JUMPvms2_Output_20200814/Intermediate/DTA/P175.2211.1.3.dta
+### Extract image from the display ion html page ###
+/home/tshaw/DRPPM/drppm -GenerateDisplayIonHTMLImgSimple JUMPvms2_Output_20200814/Intermediate/peptide_psm_list.txt 10.200.26.11 JUMPvms2_Output_20200814/Intermediate/IMG JUMPvms2_Output_20200814/Intermediate/CSV JUMPvms2_Output_20200814/Intermediate/HTML JUMPvms2_Output_20200814/Intermediate/backtrack.log no
+
+### Execute the generation of the display ion report ###
+/home/tshaw/DRPPM/drppm -GenerateDisplayIonReport JUMPvms2_Output_20200814/Intermediate/peptide_psm_list.txt JUMPvms2_Output_20200814/Intermediate/IMG JUMPvms2_Output_20200814/Intermediate/CSV JUMPvms2_Output_20200814/publications/report.docx
+Execution End: Fri Aug 14 14:09:26 2020
